@@ -13,6 +13,7 @@ use app\api\validate\IDMustBePositiveInt;
 use think\Exception;
 use think\exception\HttpException;
 use app\api\model\Banner as BannerModel;
+use app\lib\exception\MissException;
 
 class Banner
 {
@@ -28,19 +29,13 @@ class Banner
     {
         $validate = new IDMustBePositiveInt();
         $validate->goCheck();
-        try {
-            $banner = BannerModel::getBannerByID($id);
-        } catch (Exception $ex) {
-            $err = [
-                'err_code' => 1000,
-                'err_msg'  => $ex->getMessage(),
-            ];
-            
-            return json($err, 404);
-            
+       
+        $banner = BannerModel::getBannerByID($id);
+
+        if(!$banner){
+            //throw new MissException();
+            throw new Exception();
         }
-        
-        
         return $banner;
         //return 'xxx';
         // throw new HttpException(203, '页面不存在');

@@ -34,9 +34,9 @@ class Banner
 
         if(!$banner){
             //throw new MissException();
-            throw new Exception();
+            throw new MissException();
         }
-        return $banner;
+        return 'xxx';
         //return 'xxx';
         // throw new HttpException(203, '页面不存在');
     }

@@ -10,11 +10,11 @@
 namespace app\lib\exception;
 
 /**
- * 404时抛出此异常
+ * token验证失败时抛出此异常 
  */
-class MissException extends BaseException
+class ForbiddenException extends BaseException
 {
-    public $code = 404;
-    public $msg = 'global:your required resource are not found';
+    public $code = 403;
+    public $msg = '权限不够';
     public $errorCode = 10001;
 }

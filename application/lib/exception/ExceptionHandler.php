@@ -8,10 +8,10 @@
 
 namespace app\lib\exception;
 
-
 use think\exception\Handle;
 use think\Log;
 use think\Request;
+use Exception;
 
 class ExceptionHandler extends Handle
 {
@@ -39,7 +39,7 @@ class ExceptionHandler extends Handle
         }
         
         $request = Request::instance();
-        $result  = ['msg' => $this->code, 'request_url' => $request->url(), 'errorCode' => $this->errorCode];
+        $result  = ['msg' => $this->msg, 'request_url' => $request->url(true), 'errorCode' => $this->errorCode];
         
         return json($result, $this->code);
         

@@ -7,9 +7,10 @@
 
 namespace app\api\validate;
 
-class IDMustBePositiveInt extends BaseValidate
+class AppTokenGet extends BaseValidate
 {
     protected $rule = [
-        'id' => 'require|isPositiveInteger',
+        'ac' => 'require|isNotEmpty',
+        'se' => 'require|isNotEmpty'
     ];
 }

@@ -5,11 +5,13 @@
  * Description:
  */
 
+
 namespace app\api\validate;
 
-class IDMustBePositiveInt extends BaseValidate
+
+class PreOrder extends BaseValidate
 {
     protected $rule = [
-        'id' => 'require|isPositiveInteger',
+        'order_no' => 'require|length:16'
     ];
 }

@@ -7,9 +7,9 @@
 
 namespace app\api\validate;
 
-class IDMustBePositiveInt extends BaseValidate
+class Count extends BaseValidate
 {
     protected $rule = [
-        'id' => 'require|isPositiveInteger',
+        'count' => 'isPositiveInteger|between:1,15',
     ];
 }

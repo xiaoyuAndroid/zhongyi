@@ -5,11 +5,13 @@
  * Description:
  */
 
+
 namespace app\api\validate;
 
-class IDMustBePositiveInt extends BaseValidate
+
+class IsValidUserToken extends BaseValidate
 {
     protected $rule = [
-        'id' => 'require|isPositiveInteger',
+        'token' => 'isValidUserToken'
     ];
 }

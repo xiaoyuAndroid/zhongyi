@@ -9,6 +9,7 @@
 
 namespace app\api\controller\v1;
 
+use app\api\validate\AddressNew;
 use app\api\validate\IDMustBePositiveInt;
 use think\Exception;
 use think\exception\HttpException;
@@ -28,6 +29,8 @@ class Banner
     public function getBanner($id)
     {
         $validate = new IDMustBePositiveInt();
+        //$validate = new AddressNew();
+        //(new AddressNew())->goCheck();
         $validate->goCheck();
        
         $banner = BannerModel::getBannerByID($id);

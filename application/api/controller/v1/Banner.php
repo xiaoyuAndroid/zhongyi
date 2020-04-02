@@ -39,8 +39,6 @@ class Banner
             //throw new MissException();
             throw new MissException();
         }
-        return 'xxx';
-        //return 'xxx';
-        // throw new HttpException(203, '页面不存在');
+        return json($banner);
     }
 }

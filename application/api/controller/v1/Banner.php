@@ -33,12 +33,15 @@ class Banner
         //(new AddressNew())->goCheck();
         $validate->goCheck();
        
-        $banner = BannerModel::getBannerByID($id);
-
-        if(!$banner){
-            //throw new MissException();
-            throw new MissException();
-        }
-        return json($banner);
+        $banner = BannerModel::with(['items','items.imageUrl','categorys'])->find($id);
+        //$banner = BannerModel::get($id);
+        return $banner;
+        
+        //$banner = BannerModel::getBannerByID($id);//Db类查询器
+        //if(!$banner){
+        //    //throw new MissException();
+        //    throw new MissException();
+        //}
+        //return json($banner);
     }
 }

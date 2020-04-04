@@ -22,4 +22,5 @@
 
 use think\Route;
 
-Route::rule('banner/:id','api/v1.Banner/getBanner');
+//Route::rule('banner/:id','api/v1.Banner/getBanner');
+Route::rule('api/:version/banner/:id','api/:version.Banner/getBanner');

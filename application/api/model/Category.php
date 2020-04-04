@@ -4,7 +4,7 @@ namespace app\api\model;
 
 use think\Model;
 
-class Category extends Model
+class Category extends BaseModel
 {
     //
 }

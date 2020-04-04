@@ -24,3 +24,5 @@ use think\Route;
 
 //Route::rule('banner/:id','api/v1.Banner/getBanner');
 Route::rule('api/:version/banner/:id','api/:version.Banner/getBanner');
+Route::rule('api/:version/theme','api/:version.Theme/getSimpleThemeList');
+Route::rule('api/:version/theme/:id','api/:version.Theme/getComplexOne');

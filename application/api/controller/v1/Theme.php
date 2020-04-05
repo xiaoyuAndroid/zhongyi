@@ -3,6 +3,7 @@
 namespace app\api\controller\v1;
 
 use app\api\validate\IDCollection;
+use app\api\validate\IDMustBePositiveInt;
 use app\lib\exception\ThemeException;
 use think\Controller;
 use think\Request;
@@ -24,8 +25,15 @@ class Theme extends Controller
         
     }
     
-    public function getComplexOne($id){
-        return 'nihaoya';
+    public function getComplexOne($id)
+    {
+        (new IDMustBePositiveInt())->goCheck();
+        
+        $theme = ThemeModel::getThemeWithProducts($id);
+        if ( !$theme ) {
+            throw new ThemeException();
+        }
+        return $theme;
     }
     
     /**

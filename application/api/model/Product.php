@@ -20,6 +20,14 @@ class Product extends BaseModel
         $products = self::limit($count)
             ->order('create_time desc')
             ->select();
+        
+        return $products;
+    }
+    
+    public static function getAllByCategory($category_id)
+    {
+        $products = self::where('category_id', '=', $category_id)->select();
+        
         return $products;
     }
 }

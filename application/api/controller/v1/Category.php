@@ -2,38 +2,24 @@
 
 namespace app\api\controller\v1;
 
-use app\api\validate\IDCollection;
-use app\api\validate\IDMustBePositiveInt;
-use app\lib\exception\ThemeException;
+use app\lib\exception\CategoryException;
 use think\Controller;
 use think\Request;
-use app\api\model\Theme as ThemeModel;
+use app\api\model\Category as CategoryModel;
 
-class Theme extends Controller
+class Category extends Controller
 {
-    public function getSimpleThemeList($ids = '')
-    {
-        (new IDCollection())->goCheck();
-        $theme = ThemeModel::with('topImg,headImg')->select();
-        
-        if ( !$theme ) {
-            throw new ThemeException();
-        }
-        
-        return json($theme);
-        //return $theme;
-        
-    }
     
-    public function getComplexOne($id)
+    public function getAllCategories()
     {
-        (new IDMustBePositiveInt())->goCheck();
+        $categories = CategoryModel::with(['img'])
+            ->select();
         
-        $theme = ThemeModel::getThemeWithProducts($id);
-        if ( !$theme ) {
-            throw new ThemeException();
+        if ( !$categories ) {
+            throw new CategoryException();
         }
-        return $theme;
+        
+        return json($categories);
     }
     
     /**

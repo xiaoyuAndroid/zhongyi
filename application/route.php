@@ -29,3 +29,6 @@ Route::rule('api/:version/theme','api/:version.Theme/getSimpleThemeList');
 Route::rule('api/:version/theme/:id','api/:version.Theme/getComplexOne');
 
 Route::rule('api/:version/product/recent','api/:version.Product/getRecent');
+Route::rule('api/:version/product/by_category','api/:version.Product/getCategoryById');
+
+Route::rule('api/:version/category','api/:version.Category/getAllCategories');

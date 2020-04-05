@@ -35,9 +35,9 @@ class Banner
        
         $banner = BannerModel::with(['items','items.imageUrl','categorys'])->find($id);
         //$banner = BannerModel::get($id);
-        
+        //$banner->hidden(['description','banner_id']);
         //$img_url = config('setting.img_url');
-        return $banner;
+        return json($banner);
         
         //$banner = BannerModel::getBannerByID($id);//Db类查询器
         //if(!$banner){

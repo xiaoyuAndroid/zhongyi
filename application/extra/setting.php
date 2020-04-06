@@ -8,5 +8,6 @@
  */
 
 return [
-    'img_url'=>'http://zhongyi.com/images'
+    'img_url'         => 'http://zhongyi.com/images',
+    'token_expire_in' => 7200,
 ];

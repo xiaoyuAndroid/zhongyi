@@ -10,9 +10,22 @@ class Product extends BaseModel
     
     //
     
+    /**
+     * 图片属性
+     */
+    public function imgs()
+    {
+        return $this->hasMany('ProductImage', 'product_id', 'id');
+    }
+    
     protected function getMainImgUrlAttr($value, $data)
     {
         return $this->prefixImgUrl($value, $data);
+    }
+    
+    public function properties()
+    {
+        return $this->hasMany('ProductProperty', 'product_id', 'id');
     }
     
     public static function getMostRecent($count)
@@ -30,4 +43,20 @@ class Product extends BaseModel
         
         return $products;
     }
+    
+    /**
+     * 获取商品详情
+     *
+     * @param $id
+     *
+     * @return null | Product
+     */
+    public static function getProductDetail($id)
+    {
+        $product = self::with('imgs,properties,imgs.imgUrl')
+            ->find($id);
+        
+        return $product;
+    }
+    
 }

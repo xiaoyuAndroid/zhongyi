@@ -35,4 +35,15 @@ class Product
         }
         return json($products);
     }
+    
+    public function getOne($id)
+    {
+        (new IDMustBePositiveInt())->goCheck();
+        $product = ProductModel::getProductDetail($id);
+        if(!$product){
+            throw new ProductException();
+        }
+        return json($product);
+    }
+    
 }

@@ -16,7 +16,7 @@ class Token extends Controller
     {
         (new TokenGet())->goCheck();
         $wx = new UserToken($code);
-        $a = Cache::get('d3de4857d79a53685d6121aa21ef049f');
+        //$a = Cache::get('d3de4857d79a53685d6121aa21ef049f');
         $token = $wx->get();
         
         return json(['token' => $token]);

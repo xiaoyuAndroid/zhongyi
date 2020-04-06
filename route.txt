@@ -1,0 +1,13 @@
+
+http://zhongyi.com/api/v1/banner/1
+
+http://zhongyi.com/api/v1/theme?ids=2,3  or  http://zhongyi.com/api/v1/theme
+http://zhongyi.com/api/v1/theme/2
+
+http://zhongyi.com/api/v1/product/recent?count=xx
+http://zhongyi.com/api/v1/product/by_category?id=2
+http://zhongyi.com/api/v1/product/11
+
+http://zhongyi.com/api/v1/category
+
+post   http://zhongyi.com/api/v1/token/user 

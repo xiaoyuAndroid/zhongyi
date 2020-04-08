@@ -73,7 +73,8 @@ class BaseValidate extends Validate
             return TRUE;
         }
         
-        return $field . '必须是正整数';
+        //return $field . '必须是正整数';
+        return FALSE;
     }
     
     protected function isNotEmpty($value, $rule = '', $data = '', $field = '')

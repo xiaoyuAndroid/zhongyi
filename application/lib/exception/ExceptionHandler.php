@@ -29,7 +29,7 @@ class ExceptionHandler extends Handle
         } else {
             
             if ( config('app_debug') ) {
-                parent::render($e);
+                return parent::render($e);
             }
             
             $this->code      = 500;

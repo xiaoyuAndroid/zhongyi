@@ -21,6 +21,7 @@ class Token extends Controller
         
         return json(['token' => $token]);
     }
+
     
     /**
      * 显示资源列表

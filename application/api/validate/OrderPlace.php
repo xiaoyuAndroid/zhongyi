@@ -17,7 +17,6 @@ class OrderPlace extends BaseValidate
     protected $rule = [
         'products' => 'checkProducts'
     ];
-
     protected $singleRule = [
         'product_id' => 'require|isPositiveInteger',
         'count' => 'require|isPositiveInteger',

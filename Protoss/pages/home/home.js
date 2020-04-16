@@ -63,7 +63,7 @@ Page({
     //分享效果
     onShareAppMessage: function () {
         return {
-            title: '零食商贩 Pretty Vendor',
+            title: '钟易小屋 Pretty Vendor',
             path: 'pages/home/home'
         }
     }

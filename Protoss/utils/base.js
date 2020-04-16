@@ -1,5 +1,5 @@
 /**
- * Created by jimmy-jiang on 2016/11/21.
+ * Created by peter on 2020/04/15.
  */
 import { Token } from 'token.js';
 import { Config } from 'config.js';

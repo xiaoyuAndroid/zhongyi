@@ -212,7 +212,7 @@ CREATE TABLE `product` (
   `summary` varchar(50) DEFAULT NULL COMMENT '摘要',
   `img_id` int(11) DEFAULT NULL COMMENT '图片外键',
   `origin` tinyint(4) NOT NULL DEFAULT '0' COMMENT '产品来自 1 个人，2 交易',
-  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '产品状态 0 已删除，1 仓库中，2 上架中，3 已交易',
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '产品状态 1 仓库中，2 上架中，3 已交易，4 已删除',
   `update_time` int(11) DEFAULT NULL,
   `delete_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)

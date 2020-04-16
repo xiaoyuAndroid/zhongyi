@@ -8,7 +8,7 @@
         </block>
     </swiper>
     <view class="home-main">
-        <!--主题精选-->
+        <!--精选主题-->
         <view class="home-main-theme">
             <view class="home-main-header">精选主题</view>
             <view class="theme-box">
@@ -22,9 +22,9 @@
                 </block>
             </view>
         </view>
-        <!--单品首发-->
+        <!--最近发布-->
         <view class="home-main-products">
-            <view class="home-main-header">最近新品</view>
+            <view class="home-main-header">最近发布</view>
             <template is="products" data="{{productsArr:productsArr}}"/>
         </view>
     </view>

@@ -9,7 +9,7 @@ class Theme extends BaseModel
     
     protected $hidden = ['delete_time', 'update_time'];
     
-    public function topImg()
+    public function topicImg()
     {
         return $this->belongsTo('Image', 'topic_img_id', 'id');
     }

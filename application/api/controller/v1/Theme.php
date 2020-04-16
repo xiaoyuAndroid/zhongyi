@@ -14,7 +14,7 @@ class Theme extends Controller
     public function getSimpleThemeList($ids = '')
     {
         (new IDCollection())->goCheck();
-        $theme = ThemeModel::with('topImg,headImg')->select();
+        $theme = ThemeModel::with('topicImg,headImg')->select();
         
         if ( !$theme ) {
             throw new ThemeException();

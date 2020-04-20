@@ -43,7 +43,8 @@
         "selectedIconPath": "imgs/toolbar/my@selected.png",
         "text": "我的"
       }
-    ],
+    ]
+    ,
     "backgroundColor": "#F5F5F5",
     "selectedColor": "#AB956D",
     "color": "#989898",

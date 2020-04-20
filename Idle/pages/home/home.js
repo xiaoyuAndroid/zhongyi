@@ -45,6 +45,17 @@ Page({
     });
   },
 
+
+  /*跳转到商品详情*/
+  onProductsItemTap: function (event) {
+    // var id = home.getDataSet(event, 'id');
+    var id = null;
+    console.log(event);
+    wx.navigateTo({
+      url: '../product/product?id=' + id + '&nameTs=8'
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

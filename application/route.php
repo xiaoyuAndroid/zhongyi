@@ -38,7 +38,7 @@ Route::group('api/:version/product',function(){
     Route::rule('/recent','api/:version.Product/getRecent');
     
 });
-Route::rule('api/:version/category','api/:version.Category/getAllCategories');
+Route::rule('api/:version/category/all','api/:version.Category/getAllCategories');
 
 Route::post('api/:version/token/user','api/:version.Token/getToken');
 

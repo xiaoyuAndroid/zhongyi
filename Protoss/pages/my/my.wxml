@@ -1,8 +1,10 @@
 
 <view class="container my-container" hidden="{{!loadingHidden}}">
   <view class="my-header">
-    <image src="{{userInfo.avatarUrl}}"></image>
-    <text class="name">{{userInfo.nickName}}</text>
+    <!-- <image src="{{userInfo.avatarUrl}}"></image> -->
+    <!-- <text class="name">{{userInfo.nickName}}</text> -->
+    <open-data type="userAvatarUrl"></open-data>
+    <open-data type="userNickName"></open-data>
   </view>
   <!--地址管理-->
   <view class="my-address">

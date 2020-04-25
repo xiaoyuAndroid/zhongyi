@@ -10,7 +10,8 @@ Page({
     data: {
         pageIndex:1,
         isLoadedAll:false,
-        loadingHidden:false,
+        // loadingHidden:false,
+        loadingHidden: true,
         orderArr:[],
         addressInfo:null
     },

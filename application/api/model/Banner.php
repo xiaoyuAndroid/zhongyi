@@ -21,9 +21,6 @@ class Banner extends BaseModel
         return $this->hasMany('banner_item','banner_id','id');
     }
     
-    public function categorys(){
-        return $this->hasOne('category','topic_img_id','id')->field('id,name,topic_img_id');
-    }
     public static function getBannerByID($id)
     {
         

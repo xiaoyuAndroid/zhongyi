@@ -29,11 +29,9 @@ class Banner
     public function getBanner($id)
     {
         $validate = new IDMustBePositiveInt();
-        //$validate = new AddressNew();
-        //(new AddressNew())->goCheck();
         $validate->goCheck();
        
-        $banner = BannerModel::with(['items','items.img','categorys'])->find($id);
+        $banner = BannerModel::with(['items','items.img'])->find($id);
         //$banner = BannerModel::get($id);
         //$banner->hidden(['description','banner_id']);
         //$img_url = config('setting.img_url');

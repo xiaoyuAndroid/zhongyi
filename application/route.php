@@ -40,6 +40,9 @@ Route::group('api/:version/product',function(){
 });
 Route::rule('api/:version/category/all','api/:version.Category/getAllCategories');
 
+// Token
 Route::post('api/:version/token/user','api/:version.Token/getToken');
+Route::post('api/:version/token/verify','api/:version.Token/verifyToken');
+Route::rule('api/:version/token/userinfo','api/:version.Token/userInfo');
 
 Route::post('api/:version/address','api/:version.Address/createOrUpdateAddress');

@@ -4,9 +4,10 @@ Page({
   data: {
     transClassArr:['tanslate0','tanslate1','tanslate2','tanslate3','tanslate4','tanslate5'],
     currentMenuIndex:0,
-    loadingHidden:false,
+    // loadingHidden:false,
+    loadingHidden: true
   },
-  onLoad: function () {
+  onShow: function () {
     this._loadData();
   },
 
@@ -54,7 +55,8 @@ Page({
 
   isLoadedData:function(index){
     if(this.data['categoryInfo'+index]){
-      return true;
+      // return true;
+      return false;
     }
     return false;
   },
@@ -100,7 +102,7 @@ Page({
   //分享效果
   onShareAppMessage: function () {
     return {
-      title: '零食商贩 Pretty Vendor',
+      title: '钟易小屋',
       path: 'pages/category/category'
     }
   }

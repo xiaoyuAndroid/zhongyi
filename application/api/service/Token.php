@@ -55,25 +55,25 @@ class Token
     public static function getCurrentUid()
     {
         $uid = self::getCurrentTokenVar('uid');
-        //$scope = self::getCurrentTokenVar('scope');
-        //if ($scope == ScopeEnum::Super)
-        //{
-            // 只有Super权限才可以自己传入uid
-            // 且必须在get参数中，post不接受任何uid字段
-            //$userID = input('get.uid');
-            //if (!$userID)
-            //{
-            //    throw new ParameterException(
-            //        [
-            //            'msg' => '没有指定需要操作的用户对象'
-            //        ]);
-            //}
-            //return $userID;
-        //}
-        //else
-        //{
+        $scope = self::getCurrentTokenVar('scope');
+        if ($scope == ScopeEnum::Super)
+        {
+             //只有Super权限才可以自己传入uid
+             //且必须在get参数中，post不接受任何uid字段
+            $userID = input('get.uid');
+            if (!$userID)
+            {
+                throw new ParameterException(
+                    [
+                        'msg' => '没有指定需要操作的用户对象'
+                    ]);
+            }
+            return $userID;
+        }
+        else
+        {
             return $uid;
-        //}
+        }
     }
     
     
@@ -123,6 +123,18 @@ class Token
             }
         } else {
             throw new TokenException();
+        }
+    }
+    
+    
+    public static function verifyToken($token)
+    {
+        $exist = Cache::get($token);
+        if($exist){
+            return true;
+        }
+        else{
+            return false;
         }
     }
 }

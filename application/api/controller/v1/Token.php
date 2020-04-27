@@ -3,7 +3,9 @@
 namespace app\api\controller\v1;
 
 use app\api\service\UserToken;
+use app\api\service\Token as TokenService;
 use app\api\validate\TokenGet;
+
 use app\lib\exception\TokenException;
 use think\Cache;
 use think\Controller;
@@ -17,11 +19,32 @@ class Token extends Controller
         (new TokenGet())->goCheck();
         $wx = new UserToken($code);
         //$a = Cache::get('d3de4857d79a53685d6121aa21ef049f');
-        $token = $wx->get();
+        $token   = $wx->get();
         
         return json(['token' => $token]);
     }
-
+    
+    
+    // 校验Token
+    public function verifyToken($token = '')
+    {
+        if ( !$token ) {
+            throw new ParameterException(['token不允许为空']);
+        }
+        $valid   = TokenService::verifyToken($token);
+       
+        
+        return json(['isValid' => $valid]);
+    }
+    
+    // 获取userInfo
+    public function userInfo()
+    {
+        $user_id = TokenService::getCurrentUid();
+        
+        return json(['user_id' => $user_id]);
+    }
+    
     
     /**
      * 显示资源列表

@@ -12,27 +12,33 @@ namespace app\api\controller\v1;
 use app\api\model\Product as ProductModel;
 use app\api\validate\Count;
 use app\api\validate\IDMustBePositiveInt;
+use app\lib\enum\ProductStatus;
 use app\lib\exception\ProductException;
+use app\api\service\Token as TokenService;
 
 class Product
 {
     public function getRecent($count = 15)
     {
         (new Count())->goCheck();
-        $products = ProductModel::getMostRecent($count);
-        if(!$products){
+        //$user_id = TokenService::getCurrentUid();
+        $products = ProductModel::getMostRecent($count, 0, ProductStatus::shangjia);
+        if ( !$products ) {
             throw new ProductException();
         }
+        
         return json($products);
     }
     
     public function getCategoryById($id)
     {
         (new IDMustBePositiveInt())->goCheck();
-        $products = ProductModel::getAllByCategory($id);
-        if(!$products){
+        //$user_id = TokenService::getCurrentUid();
+        $products = ProductModel::getAllByCategory($id, 0, ProductStatus::shangjia);
+        if ( !$products ) {
             throw new ProductException();
         }
+        
         return json($products);
     }
     
@@ -40,9 +46,10 @@ class Product
     {
         (new IDMustBePositiveInt())->goCheck();
         $product = ProductModel::getProductDetail($id);
-        if(!$product){
+        if ( !$product ) {
             throw new ProductException();
         }
+        
         return json($product);
     }
     

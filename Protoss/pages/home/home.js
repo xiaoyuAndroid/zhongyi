@@ -1,10 +1,11 @@
 import { Home } from 'home-model.js';
 var home = new Home(); //实例化 首页 对象
+
 Page({
     data: {
         loadingHidden: false
     },
-    onLoad: function () {
+    onShow: function () {
         this._loadData();
     },
 
@@ -16,18 +17,27 @@ Page({
         home.getBannerData((data) => {
             that.setData({
                 bannerArr: data,
-            });
-        });
-
-        /*获取主题信息*/
-        home.getThemeData((data) => {
-            that.setData({
-                themeArr: data,
                 loadingHidden: true
             });
         });
 
-        /*获取单品信息*/
+        // 获取user_id信息
+        //  wx.setStorageSync('user_id', res.data.user_id);
+        home.getUser((data)=>{
+          wx.setStorageSync('user_id', data.user_id);
+
+        });
+      
+
+        /*获取主题信息*/
+        // home.getThemeData((data) => {
+        //     that.setData({
+        //         themeArr: data,
+        //         loadingHidden: true
+        //     });
+        // });
+
+        /*获取最近发布信息*/
         home.getProductorData((data) => {
             that.setData({
                 productsArr: data
@@ -45,13 +55,13 @@ Page({
     },
 
     /*跳转到主题列表*/
-    onThemesItemTap: function (event) {
-        var id = home.getDataSet(event, 'id');
-        var name = home.getDataSet(event, 'name');
-        wx.navigateTo({
-            url: '../theme/theme?id=' + id+'&name='+ name
-        })
-    },
+    // onThemesItemTap: function (event) {
+    //     var id = home.getDataSet(event, 'id');
+    //     var name = home.getDataSet(event, 'name');
+    //     wx.navigateTo({
+    //         url: '../theme/theme?id=' + id+'&name='+ name
+    //     })
+    // },
 
     /*下拉刷新页面*/
     onPullDownRefresh: function(){
@@ -63,7 +73,7 @@ Page({
     //分享效果
     onShareAppMessage: function () {
         return {
-            title: '钟易小屋 Pretty Vendor',
+            title: '钟易小屋',
             path: 'pages/home/home'
         }
     }

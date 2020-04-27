@@ -35,7 +35,7 @@
         "pagePath": "pages/cart/cart",
         "iconPath": "imgs/toolbar/cart.png",
         "selectedIconPath": "imgs/toolbar/cart@selected.png",
-        "text": "购物车"
+        "text": "换物车"
       },
       {
         "pagePath": "pages/my/my",

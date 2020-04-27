@@ -2,6 +2,7 @@
 
 namespace app\api\model;
 
+use app\lib\enum\ProductStatus;
 use think\Model;
 
 class Product extends BaseModel
@@ -28,18 +29,22 @@ class Product extends BaseModel
         return $this->hasMany('ProductProperty', 'product_id', 'id');
     }
     
-    public static function getMostRecent($count)
+    public static function getMostRecent($count, $user_id = 0, $status)
     {
-        $products = self::limit($count)
-            ->order('create_time desc')
-            ->select();
+        $whereArr['user_id']     = ['neq', $user_id]; // 不等于条件
+        $whereArr['status']      = $status; // 等于条件
+        //$products            = self::limit($count)->where($whereArr)->order('create_time desc')->fetchSql();
+        $products = self::limit($count)->where($whereArr)->order('create_time desc')->select();
         
         return $products;
     }
     
-    public static function getAllByCategory($category_id)
+    public static function getAllByCategory($category_id, $user_id = 0, $status)
     {
-        $products = self::where('category_id', '=', $category_id)->select();
+        $whereArr['user_id']     = ['neq', $user_id]; // 不等于条件
+        $whereArr['status']      = $status; // 等于条件
+        $whereArr['category_id'] = ['eq', $category_id]; // 等于条件
+        $products                = self::where($whereArr)->select();
         
         return $products;
     }
@@ -53,8 +58,7 @@ class Product extends BaseModel
      */
     public static function getProductDetail($id)
     {
-        $product = self::with('imgs,properties,imgs.imgUrl')
-            ->find($id);
+        $product = self::with('imgs,properties,imgs.imgUrl')->find($id);
         
         return $product;
     }

@@ -20,6 +20,11 @@ class Token {
         } 
     }
 
+    userinfo(){
+      var user_id = wx.getStorageSync('user_id');
+      return user_id;
+    }
+
     _veirfyFromServer(token) {
         var that = this;
         wx.request({

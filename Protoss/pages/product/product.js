@@ -7,8 +7,13 @@ import {
   Cart
 } from '../cart/cart-model.js';
 
+import {
+  Token
+} from '../../utils/token.js';
+
 var product = new Product(); //实例化 商品详情 对象
 var cart = new Cart();
+var token = new Token();
 Page({
   data: {
     loadingHidden: false,
@@ -17,11 +22,14 @@ Page({
     productCounts: 1,
     currentTabsIndex: 0,
     cartTotalCounts: 0,
+    user_id: 0,
   },
   onLoad: function(option) {
     var id = option.id;
     this.data.id = id;
     this._loadData();
+    var user_id = token.userinfo();
+    this.data.user_id = user_id;
   },
 
   /*加载所有数据*/
@@ -58,7 +66,21 @@ Page({
     if (this.data.isFly) {
       return;
     }
-    
+
+    var cartData = cart.getCartDataFromLocal();
+    if (cartData.length >= 1) {
+      this.showTips('注意', '一次只能换购一个物品！您现在要先去换购车处理吗？', true, true);
+      return;
+    }
+    // console.log(this.data.product);
+
+    if (this.data.user_id == this.data.product.user_id) {
+      this.showTips('', '物品【'+this.data.product.name+'】是您本人发布的', false, false);
+      return;
+    }
+
+    // console.log('ceshi');
+
     this._flyToCartEffect(events);
     this.addToCart();
   },
@@ -139,16 +161,20 @@ Page({
    * this.showTips('', '这个商品是您本人上架的，不能换购',false,false);
 
    */
-  showTips: function (title, content, showCancel,flag) {
+  showTips: function(title, content, showCancel, flag) {
     wx.showModal({
       title: title,
       content: content,
       showCancel: showCancel,
       success: function(res) {
-        if (flag) {
-          wx.switchTab({
-            url: '/pages/cart/cart'
-          });
+        if (res.confirm) {
+          if (flag) {
+            wx.switchTab({
+              url: '/pages/cart/cart'
+            });
+          }
+        } else {
+
         }
       }
     });

@@ -28,6 +28,23 @@ class Order extends Base{
         this.request(allParams);
     }
 
+  /*下订单*/
+  doOrder2(orderInfo, chooseInfo, callback) {
+    var that = this;
+    var allParams = {
+      url: 'order',
+      type: 'post',
+      data: { orderInfo: orderInfo, chooseInfo: chooseInfo},
+      sCallback: function (data) {
+        that.execSetStorageSync(true);
+        callback && callback(data);
+      },
+      eCallback: function () {
+      }
+    };
+    this.request(allParams);
+  }
+
     /*
     * 拉起微信支付
     * params:

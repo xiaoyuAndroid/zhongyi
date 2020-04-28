@@ -60,6 +60,7 @@
 }
 .title-box{
     display: flex;
+    margin-top: 20px;
     justify-content:space-between;
 }
 .bottom-box{
@@ -121,6 +122,8 @@
 
 .all-price-submit{
     width: 60%;
+    margin-left: 150px;
+  
 }
 .all-price-submit.disabled{
     color: #e6e6e6;

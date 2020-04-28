@@ -13,7 +13,7 @@ class Address extends Base{
     getAddress(callback){
         var that=this;
         var param={
-            url: 'address',
+            url: 'getaddress',
             sCallback:function(res){
                 if(res) {
                     res.totalDetail = that.setAddressInfo(res);
@@ -71,7 +71,7 @@ class Address extends Base{
             detail =res.detailInfo || res.detail;
         var totalDetail=city+country+detail;
 
-        console.log(res);
+        // console.log(res);
 
         //直辖市，取出省部分
         if(!this.isCenterCity(province)) {

@@ -14,16 +14,18 @@
                         <view class="cart-item-word">
                             <view class="title-box">
                                 <text class="title">{{item.name}}</text>
-                                <text>￥{{item.price}}</text>
+                                <!-- <text>￥{{item.price}}</text> -->
+                                
                             </view>
                             <view class="bottom-box">
                                 <view class="cart-item-counts">
-                                    <view class="btns {{item.counts==1?'disabled':''}}" bindtap="changeCounts" data-id="{{item.id}}" data-type="cut">-</view>
-                                    <view class="counts">{{item.counts}}</view>
-                                    <view class="btns" bindtap="changeCounts" data-id="{{item.id}}" data-type="add">+</view>
+                                    <!-- <view class="btns {{item.counts==1?'disabled':''}}" bindtap="changeCounts" data-id="{{item.id}}" data-type="cut">-</view> -->
+                                    <!-- <view class="counts">{{item.counts}}</view> -->
+                                    <!-- <view class="btns" bindtap="changeCounts" data-id="{{item.id}}" data-type="add">+</view> -->
                                 </view>
                                 <view class="delete" data-id="{{item.id}}" bindtap="delete">×</view>
                             </view>
+                          
                         </view>
                     </view>
                 </view>

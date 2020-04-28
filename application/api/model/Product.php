@@ -7,7 +7,7 @@ use think\Model;
 
 class Product extends BaseModel
 {
-    protected $hidden = ['delete_time', 'update_time', 'pivot', 'from', 'create_time'];
+    //protected $hidden = ['delete_time', 'update_time', 'pivot', 'from', 'create_time'];
     
     //
     
@@ -49,6 +49,15 @@ class Product extends BaseModel
         return $products;
     }
     
+    public static function getAllByUser($user_id = 0, $status)
+    {
+        $whereArr['user_id']     = ['eq', $user_id]; // 不等于条件
+        $whereArr['status']      = $status; // 等于条件
+        $products                = self::where($whereArr)->select();
+        
+        return $products;
+    }
+    
     /**
      * 获取商品详情
      *
@@ -63,4 +72,17 @@ class Product extends BaseModel
         return $product;
     }
     
+    /**
+     * 获取商品详情
+     *
+     * @param $id
+     *
+     * @return null | Product
+     */
+    public static function getProductDetail2($id)
+    {
+        $product = self::find($id);
+        
+        return $product;
+    }
 }

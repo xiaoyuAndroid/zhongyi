@@ -13,6 +13,6 @@ class ProductStatus
 {
     const cangku   = 1;
     const shangjia = 2;
-    const huangzou = 3;
+    const huanzou  = 3;
     const delete   = 99;
 }

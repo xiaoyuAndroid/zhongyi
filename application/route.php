@@ -36,6 +36,7 @@ Route::group('api/:version/product',function(){
     Route::rule('/by_category','api/:version.Product/getCategoryById');
     Route::get('/:id','api/:version.Product/getOne',[],['id'=>'\d+']);
     Route::rule('/recent','api/:version.Product/getRecent');
+    Route::rule('/user_id/:user_id','api/:version.Product/getProductByUser');
     
 });
 Route::rule('api/:version/category/all','api/:version.Category/getAllCategories');
@@ -45,4 +46,10 @@ Route::post('api/:version/token/user','api/:version.Token/getToken');
 Route::post('api/:version/token/verify','api/:version.Token/verifyToken');
 Route::rule('api/:version/token/userinfo','api/:version.Token/userInfo');
 
-Route::post('api/:version/address','api/:version.Address/createOrUpdateAddress');
+//Address
+Route::post('api/:version/address', 'api/:version.Address/createOrUpdateAddress');
+Route::get('api/:version/getaddress', 'api/:version.Address/getUserAddress');
+
+//Order
+Route::post('api/:version/order', 'api/:version.Order/placeOrder');
+Route::get('api/:version/order/:id', 'api/:version.Order/getDetail',[], ['id'=>'\d+']);

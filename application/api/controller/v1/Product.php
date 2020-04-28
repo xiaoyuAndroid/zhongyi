@@ -30,6 +30,17 @@ class Product
         return json($products);
     }
     
+    public function getProductByUser($user_id)
+    {
+        //$user_id = TokenService::getCurrentUid();
+        $products = ProductModel::getAllByUser($user_id,ProductStatus::cangku);
+        if ( !$products ) {
+            throw new ProductException();
+        }
+        
+        return json($products);
+    }
+    
     public function getCategoryById($id)
     {
         (new IDMustBePositiveInt())->goCheck();

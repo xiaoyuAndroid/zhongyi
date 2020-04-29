@@ -1,0 +1,24 @@
+<!--pages/add/add.wxml-->
+<form bindsubmit="formSubmit" bindreset="formReset">
+  <l-input label="名称" placeholder="请输入名称" clear="{{true}}" required="{{true}}" name='productName'></l-input>
+
+  <view class="page">
+    <view class="page__hd">
+        <text class="page__title">类别</text>
+    </view>
+    <view class="page__bd">
+        <view class="section section_gap">
+            <radio-group class="radio-group" name="radioSelected" bindchange="radioChange">
+                <radio class="radio" wx:for-items="{{categoryTypeArr}}" wx:key="name" value="{{item.id}}" checked="{{item.checked}}">
+                    <text>{{item.name}}</text>
+                </radio>
+            </radio-group>
+        </view>
+    </view>
+</view>
+
+  <l-image-picker count="1" size="4" bind:linchange="onChangeTap" name="uploadImage"/>
+  <view class="btn-area">
+    <button formType="submit">新增</button>
+  </view>
+</form>

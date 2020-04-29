@@ -1,10 +1,14 @@
 import {Address} from '../../utils/address.js';
 import {Order} from '../order/order-model.js';
 import {My} from '../my/my-model.js';
+import {Product} from '../product/product-model.js';
+import {Token} from '../../utils/token.js';
 
 var address=new Address();
 var order=new Order();
 var my=new My();
+var product = new Product();
+var token = new Token();
 
 Page({
     data: {
@@ -13,30 +17,43 @@ Page({
         // loadingHidden:false,
         loadingHidden: true,
         orderArr:[],
-        addressInfo:null
+        addressInfo:null,
+      user_id: 0,
+      userProducts: []
     },
     onLoad:function(){
-        this._loadData();
-        this._getAddressInfo();
+        
     },
 
     onShow:function(){
-        //更新订单,相当自动下拉刷新,只有  非第一次打开 “我的”页面，且有新的订单时 才调用。
-        var newOrderFlag=order.hasNewOrder();
-        if(this.data.loadingHidden &&newOrderFlag){
-            this.onPullDownRefresh();
+      // this._loadData();
+      this._getAddressInfo();
+
+      var user_id = token.userinfo();
+      product.getUserProducts2(user_id, (products) => {
+        if (products) {
+          // for (var i = 0; i < products.length; i++) {
+          //   products[i].selectStatus = false;
+          // }
+          this.setData({
+            userProducts: products,
+            user_id: user_id,
+            loadingHidden: true
+          });
         }
+      });
+
+        // //更新订单,相当自动下拉刷新,只有  非第一次打开 “我的”页面，且有新的订单时 才调用。
+        // var newOrderFlag=order.hasNewOrder();
+        // if(this.data.loadingHidden &&newOrderFlag){
+        //     this.onPullDownRefresh();
+        // }
+
+
     },
 
     _loadData:function(){
         var that=this;
-        my.getUserInfo((data)=>{
-            that.setData({
-                userInfo:data
-            });
-
-        });
-
         this._getOrders();
         order.execSetStorageSync(false);  //更新标志位
     },
@@ -75,6 +92,37 @@ Page({
             }
         })
     },
+
+  onProductsStatus: function (event){
+    var id = event.target.dataset.id;
+    var status = event.target.dataset.status;
+    var shangjia = false;
+    var that = this;
+  
+    if(status==1){
+      shangjia = true;
+    }
+    
+    product.editStatus(id, shangjia, (res) => {
+      if(res==true){
+        var user_id = token.userinfo();
+        product.getUserProducts2(user_id, (products) => {
+          if (products) {
+          
+            this.setData({
+              userProducts: products,
+              user_id: user_id,
+              loadingHidden: true
+            });
+          }
+        });
+      }else{
+        console.log('1');
+      }
+      
+    });
+
+  },
 
     /*绑定地址信息*/
     _bindAddressInfo:function(addressInfo){
@@ -187,5 +235,19 @@ Page({
             }
         });
     },
+
+  /*跳转到商品详情*/
+  onProductsItemTap: function (event) {
+    var id = event.currentTarget.dataset['id']
+    wx.navigateTo({
+      url: '../product/product?id=' + id
+    })
+  },
+
+  onProductsAddTap:function(event){
+    wx.navigateTo({
+      url: '../add/add'
+    })
+  }
 
 })

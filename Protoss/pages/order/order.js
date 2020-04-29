@@ -135,6 +135,11 @@ Page({
       return;
     }
 
+    if (!this.data.productsArr) {
+      this.showTips('下单提示', '换物车还未添加物品！');
+      return;
+    }
+
     if (!this.data.userProducts) {
       this.showTips('下单提示', '您的个人仓库为空！');
       return;
@@ -155,6 +160,9 @@ Page({
     } else {
       this._oneMoresTimePay();
     }
+
+
+
   },
 
   /*修改 第一次换物*/
@@ -175,20 +183,21 @@ Page({
     }
    
     var that = this;
-    //支付分两步，第一步是生成订单号，然后根据订单号支付
+   
     order.doOrder2(orderInfo, chooseInfo, (data) => {
-      return;
-      //订单生成成功
+      console.log('data'+data);
       if (data.pass) {
+        that.deleteProducts(); //将已经下单的商品从购物车删除   当状态为0时，表示
+        var flag= 2;
         //更新订单状态
-        var id = data.order_id;
-        that.data.id = id;
         that.data.fromCartFlag = false;
+        // wx.navigateTo({
+        //   url: '../pay-result/pay-result?' + 'flag=' + flag + '&from=order'
+        // });
+        this.showTips2('', '交换成功', false, true);
 
-        //开始支付
-        that._execPay(id);
-      } else {
-        that._orderFail(data); // 下单失败
+      } else { 
+        this.showTips2('下单失败', '点击查看详情', true, true);
       }
     });
   },
@@ -341,6 +350,32 @@ Page({
         return i;
       }
     }
+  },
+
+  /*
+ * 提示窗口
+ * params:
+ * title - {string}标题
+ * content - {string}内容
+ * flag - {bool}是否跳转到 "换物车页面"
+ * 
+ * this.showTips('1','2',true);
+ * this.showTips('', '这个商品是您本人上架的，不能换购',false,false);
+
+ */
+  showTips2: function (title, content, showCancel, flag) {
+    wx.showModal({
+      title: title,
+      content: content,
+      showCancel: showCancel,
+      success: function (res) {
+          if (flag) {
+            wx.switchTab({
+              url: '/pages/my/my'
+            });
+          }
+      }
+    });
   }
 
 

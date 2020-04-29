@@ -31,8 +31,8 @@ class Product extends BaseModel
     
     public static function getMostRecent($count, $user_id = 0, $status)
     {
-        $whereArr['user_id']     = ['neq', $user_id]; // 不等于条件
-        $whereArr['status']      = $status; // 等于条件
+        $whereArr['user_id'] = ['neq', $user_id]; // 不等于条件
+        $whereArr['status']  = $status; // 等于条件
         //$products            = self::limit($count)->where($whereArr)->order('create_time desc')->fetchSql();
         $products = self::limit($count)->where($whereArr)->order('create_time desc')->select();
         
@@ -49,11 +49,15 @@ class Product extends BaseModel
         return $products;
     }
     
-    public static function getAllByUser($user_id = 0, $status)
+    public static function getAllByUser($user_id = 0, $status, $all = FALSE)
     {
-        $whereArr['user_id']     = ['eq', $user_id]; // 不等于条件
-        $whereArr['status']      = $status; // 等于条件
-        $products                = self::where($whereArr)->select();
+        if ( $all ) {
+            $whereArr['status'] = ['in', [ProductStatus::cangku, ProductStatus::shangjia]];
+        } else {
+            $whereArr['status'] = $status; // 等于条件
+        }
+        $whereArr['user_id'] = ['eq', $user_id]; // 不等于条件
+        $products            = self::where($whereArr)->select();
         
         return $products;
     }

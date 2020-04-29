@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "上传物品",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "l-icon": "../../dist/icon/index",
+    "l-input": "../../dist/input/index",
+    "l-radio": "../../dist/radio/index",
+    "l-radio-group": "../../dist/radio-group/index",
+    "l-image-picker":"../../dist/image-picker/index"
+  }
+}

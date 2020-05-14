@@ -62,6 +62,19 @@ class Product extends BaseModel
         return $products;
     }
     
+    public static function getAllBySearch($search = 0)
+    {
+        
+        $whereArr['status'] = ['eq', ProductStatus::shangjia];
+        $whereArr['name'] = array('like','%'.$search.'%');
+        
+        $products            = self::where($whereArr)->select();
+        
+        return $products;
+    }
+    
+    
+    
     /**
      * 获取商品详情
      *

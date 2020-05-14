@@ -39,6 +39,10 @@
     </view>
   </view>
 
+  <view class="kefu">
+   <l-button size="long" open-type="contact">在线客服</l-button>
+  </view>
+  
   <view class="my-order" wx:if="{{userProducts.length>0}}">
     <view class="item-title">我的仓库</view>
     <view class="item-main">

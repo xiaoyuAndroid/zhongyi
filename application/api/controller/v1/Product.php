@@ -52,6 +52,16 @@ class Product
         
         return json($products);
     }
+    
+    public function getProductBySearch($search){
+    
+        $products = ProductModel::getAllBySearch($search);
+        if ( !$products ) {
+            throw new ProductException();
+        }
+    
+        return json($products);
+    }
 
     
     public function getCategoryById($id)
@@ -99,6 +109,7 @@ class Product
         $firstPorduct = ProductModel::create(
             [
                 'name'         => $uploadData['productName'],
+                'stock'        => 666,
                 'category_id'  => $uploadData['radioSelected'],
                 'main_img_url' => $newimage,
                 'from'         => 1,

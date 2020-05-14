@@ -35,6 +35,7 @@ Route::rule('api/:version/theme/:id','api/:version.Theme/getComplexOne');
 Route::group('api/:version/product',function(){
     Route::rule('/by_category','api/:version.Product/getCategoryById');
     Route::get('/:id','api/:version.Product/getOne',[],['id'=>'\d+']);
+    Route::get('/by_name','api/:version.Product/getProductBySearch',[],['id'=>'\d+']);
     Route::rule('/recent','api/:version.Product/getRecent');
     Route::rule('/user_id/:user_id','api/:version.Product/getProductByUser');
     Route::rule('/modify/:product_id','api/:version.Product/modifyProduct');

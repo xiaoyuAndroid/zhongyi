@@ -8,15 +8,36 @@
             </swiper-item>
         </block>
     </swiper>
-
-    <view class="home-main"> 
+  <view class="search">
+    <icon type="search" class="search-img" size="13" color="#405f80"></icon>
+    <input type="text" placeholder="请输入您感兴趣的内容" placeholder-class="placeholder" bindfocus="onBindFocus" bindconfirm="onBindConfirm" value="{{inputValue}}"/>
+  <!-- <image wx:if="{{searchPanelShow}}" src="/images/icon/xx.png" class="xx-img" catchtap="onCancelImgTap"></image> -->
+   <view class="delete" wx:if="{{searchPanelShow}}" catchtap="onCancelImgTap">×</view>
+  </view>
+  <view class="home-main" wx:if="{{containerShow}}"> 
         <!--最近发布-->
-        <view class="home-main-products">
-            <view class="home-main-header">最近发布</view>
-            <template is="products" data="{{productsArr:productsArr}}"/>
-        </view>
-    </view>
+      <view class="home-main-products">
+          <view class="home-main-header">最近发布</view>
+          <template is="products" data="{{productsArr:productsArr}}"/>
+      </view>
+  </view>
+
+  <view class="search-panel" wx:if="{{searchPanelShow}}">
+    
+     <view wx:if="{{searchResult.length>0}}">
+      <view class="home-main-header">搜索结果</view>
+      <template is="products" data="{{productsArr:searchResult}}" />
+     </view>
+      <view wx:else class="no-data">
+         搜索结果为空
+      </view>
+ </view>
+
 </view>
-<loading hidden="{{loadingHidden}}">
+
+<!-- <loading hidden="{{loadingHidden}}">
     加载中...
-</loading>
+</loading> -->
+<!-- <loading hidden="{{loadingHidden}}">
+    加载中...
+</loading> -->

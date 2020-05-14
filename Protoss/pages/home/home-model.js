@@ -60,6 +60,20 @@ class Home extends Base {
     };
     this.request(param);
   }
+
+  /*首页最近发布商品*/
+  getProductorBySearch(search,callback) {
+    var param = {
+      url: 'product/by_name?search=' + search,
+      sCallback: function (data) {
+        callback && callback(data);
+      },
+      eCallback: function (data) {
+        callback && callback(data);
+      }
+    };
+    this.request(param);
+  }
 };
 
 export {

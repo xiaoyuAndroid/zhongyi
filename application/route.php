@@ -59,3 +59,6 @@ Route::post('api/:version/order', 'api/:version.Order/placeOrder');
 Route::get('api/:version/order/:id', 'api/:version.Order/getDetail',[], ['id'=>'\d+']);
 
 Route::post('api/:version/product/add','api/:version.Product/addProduct');
+
+//user
+Route::post('api/:version/user/wx_info', 'api/:version.User/wx_info');

@@ -2,8 +2,21 @@
   <view class="my-header">
     <!-- <image src="{{userInfo.avatarUrl}}"></image> -->
     <!-- <text class="name">{{userInfo.nickName}}</text> -->
-    <open-data type="userAvatarUrl"></open-data>
-    <open-data type="userNickName"></open-data>
+
+    <!-- <open-data type="userAvatarUrl"></open-data>
+    <open-data type="userNickName"></open-data> -->
+
+    <image src="{{userInfo.avatarUrl}}"></image>
+    <!-- 根据授权的状态决定渲染什么内容 -->
+    <text wx:if="{{!showAuth}}" class="name">{{userInfo.nickName}}</text>
+    
+    <view wx:else class="open-button">
+      <!-- 使用Lin UI 的Button组件 -->
+      <l-button special open-type="getUserInfo" bind:getuserinfo="getUserInfo">
+        {{userInfo.nickName}}
+      </l-button>
+    </view>
+
   </view>
   <!--地址管理-->
   <view class="my-address">

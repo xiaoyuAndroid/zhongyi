@@ -47,11 +47,15 @@
             </block>
         </view>
         <view class="product-detail-box">
-            <view class="product-detail-imgs" hidden="{{currentTabsIndex!=0}}">
+            <!-- <view class="product-detail-imgs" hidden="{{currentTabsIndex!=0}}">
                 <block wx:for="{{product.imgs}}">
                     <image src="{{item.img_url.url}}" mode="aspectFill"></image>
                 </block>
+            </view> -->
+            <view class="product-detail-imgs" hidden="{{currentTabsIndex!=0}}">
+                    <view class="properties-name">{{product.detail.detail}}</view>
             </view>
+
             <view class="product-detail-properties" hidden="{{currentTabsIndex!=1}}">
                 <block wx:for="{{product.properties}}">
                     <view class="properties-item">

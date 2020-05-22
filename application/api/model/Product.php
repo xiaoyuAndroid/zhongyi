@@ -11,6 +11,12 @@ class Product extends BaseModel
     
     //
     
+    // 物品详情
+    public function detail()
+    {
+        return $this->hasOne('ProductDetail', 'product_id', 'id');
+    }
+    
     /**
      * 图片属性
      */
@@ -84,7 +90,7 @@ class Product extends BaseModel
      */
     public static function getProductDetail($id)
     {
-        $product = self::with('imgs,properties,imgs.imgUrl')->find($id);
+        $product = self::with('imgs,properties,imgs.imgUrl,detail')->find($id);
         
         return $product;
     }

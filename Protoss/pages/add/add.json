@@ -6,6 +6,7 @@
     "l-input": "../../dist/input/index",
     "l-radio": "../../dist/radio/index",
     "l-radio-group": "../../dist/radio-group/index",
-    "l-image-picker":"../../dist/image-picker/index"
+    "l-image-picker":"../../dist/image-picker/index",
+    "l-textarea":"../../dist/textarea/index"
   }
 }

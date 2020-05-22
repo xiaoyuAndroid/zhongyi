@@ -311,6 +311,19 @@ INSERT INTO `product_property` VALUES ('7', '净含量', '100g', '2', null, null
 INSERT INTO `product_property` VALUES ('8', '保质期', '10天', '2', null, null);
 
 -- ----------------------------
+-- Table structure for product_detail
+-- ----------------------------
+DROP TABLE IF EXISTS `product_detail`;
+CREATE TABLE `product_detail` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `detail` varchar(255) NOT NULL COMMENT '详情属性',
+  `product_id` int(11) NOT NULL COMMENT '商品id，外键',
+  `update_time` int(11) DEFAULT NULL,
+  `delete_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
 -- Table structure for theme
 -- ----------------------------
 DROP TABLE IF EXISTS `theme`;
